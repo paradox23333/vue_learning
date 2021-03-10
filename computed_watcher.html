@@ -32,12 +32,12 @@
                     return `${this.firstName}-${this.lastName}`
                 },
                 fullName3: {
-                    get(){
+                    get(){//监视依赖数据
                         console.log('fullName3()')
                         return this.firstName+'-'+this.lastName
                     },
 
-                    set(value){
+                    set(value){//监视当前数据
                         const names = value.split('-');
                         this.firstName = names[0];
                         this.lastName = names[1];
