@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="demo">
+        <span>用户名:</span>
+        <input type="text" id="name" v-model="user.name"><br>
+        <span>性别：</span>
+        <label for="female">女</label>
+        <input type="radio" id="sex" v-model="user.sex" value="female">
+        <label for="male">男</label>
+        <input type="radio" id="sex" v-model="user.sex" value="male"><br>
+        <span>爱好：</span>
+        <label for="篮球">篮球</label>
+        <input type="checkbox" id="basket" v-model="user.hobby" value="basket" >
+        <input type="submit"  value="注册" @click.prevent="register">
+    </form>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#demo',
+            data() {
+                return {
+                    user:{
+                        name:'',
+                        sex:'',
+                        hobby:[],
+                    }
+                  
+
+                }
+            
+            },
+            methods: {
+                register(){
+                    const user = {
+
+                    }
+                    alert('提交注册ajax请求' + JSON.stringify(this.user))
+                }
+            },
+        })
+    </script>
+</body>
+</html>

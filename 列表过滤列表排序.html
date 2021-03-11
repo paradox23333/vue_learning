@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "app">
+        <input type="text" v-model="searchName">
+        <ul>
+            <li v-for="(p,index) in filterPersons" :key="p.id">
+                {{p.id}}---{{p.name}}---{{p.age}}
+            </li>
+        </ul>
+        <button @click="clickType=1">按年龄升序</button>
+        <button @click="clickType=2">按年龄降序</button>
+        <button @click="clickType=3">原本顺序</button>
+    </div>
+
+    <script src = "vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data(){
+                return {
+                    searchName: '',
+                    clickType:3,//1升序  2降序 3 原本顺序
+                    persons:[
+                        {id: 1, name: 'Tom', age: 13},
+                        {id: 3, name: 'Apple', age: 14},
+                        {id: 5, name: 'Banana', age: 15},
+                        {id: 7, name: 'Cherry', age: 11},
+                        {id: 2, name: 'Doffy', age: 18},
+                        {id: 8, name: 'Edwin', age: 16}
+                    ]
+                }
+            },
+            computed:{
+                //过滤后的新数组
+                filterPersons(){
+                    //1.取出依赖数据
+                     const {searchName,persons,clickType} = this
+                    //2.计算产生一个新数据
+                    //数组过滤
+                    const arr = persons.filter((p,index) => p.name.indexOf(searchName)!==-1)
+                    //有可能要排序（升/降）
+                    if(clickType!==3){
+                        arr.sort((p1,p2) =>
+                        {
+                            if (clickType == 1){
+                                return p1.age - p2.age
+                            }else{
+                                return p2.age - p1.age
+                            }
+                           
+                        })
+                    }
+                    //3.返回新数据
+                    return arr
+                }
+            }
+        })
+    </script>
+</body>
+</html>
