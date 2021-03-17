@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fade-enter-active{
+            transition: all 5s;
+        }
+        .fade-leave-active{
+            transition: all 1s;
+        }
+
+        .fade-enter, .fade-leave-to{
+            opacity:0;
+            transform:translateX(20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <button @click="show = !show">点我</button>
+        <transition name="fade">
+        <p v-show="show">wtf!</p>
+        </transition>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#demo',
+            data:{
+                show:true,
+                
+            }
+        })
+
+    </script>
+</body>
+</html>
